@@ -20,8 +20,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--in
 .brand .b-txt{border-left:3px solid var(--green-xl);padding-left:22px}
 .brand h1{font-size:21px;color:var(--teal);font-weight:800;letter-spacing:.2px}
 .brand .t-sub{font-size:12.5px;color:var(--muted);margin-top:4px}
-.top .t-date{font-size:11.5px;background:var(--green-l);color:#2e5010;padding:5px 14px;border-radius:20px;font-weight:700;white-space:nowrap}
-.tabs{display:flex;gap:6px;margin-bottom:20px;background:vaFr(--card);padding:6px;border-radius:14px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.top .t-date{font-size:11.5px;background:var(--green-xl);color:#2e5010;padding:5px 14px;border-radius:20px;font-weight:700;white-space:nowrap}
+.tabs{display:flex;gap:6px;margin-bottom:20px;background:var(--card);padding:6px;border-radius:14px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04)}
 .tab{flex:1;border:none;background:transparent;padding:13px 14px;font-family:inherit;font-size:13px;font-weight:700;color:var(--muted);border-radius:10px;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px}
 .tab:hover{background:#f2f6ef;color:var(--ink)}
 .tab.active{background:var(--teal);color:#fff}
@@ -55,11 +55,20 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--in
 .p-title{font-size:14px;font-weight:700;color:var(--ink)}
 .p-desc{font-size:12px;color:var(--muted);margin-top:3px;max-width:780px}
 .p-met{display:flex;align-items:center;font-size:16px;font-weight:800;color:var(--teal);text-align:right;white-space:nowrap;padding-left:10px}
-.cults{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.cults{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
 .cult-card{border:1px solid var(--line);border-radius:12px;padding:12px 13px;background:#fcfdfb}
-.cc-name{font-size:12px;font-weight:700}
+.cc-name{font-size:13px;font-weight:800;color:var(--ink)}
+.cc-stage{font-size:11px;color:var(--muted);margin:3px 0 10px}
+.cc-stage b{color:var(--teal);font-weight:700}
+.cc-stage-muted{font-style:italic}
 .cc-av{font-size:26px;font-weight:800;margin:3px 0 3px} .cc-av span{font-size:13px;color:var(--muted)}
 .bar{height:7px;background:#eef2ec;border-radius:5px;overflow:hidden;margin-bottom:9px} .bar-fill{height:100%;border-radius:5px}
+.cc-etapas{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.et-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px}
+.et-lbl{font-size:10.5px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:108px}
+.et-bar{margin-bottom:0;flex:1}
+.et-val{font-size:11px;font-weight:800;white-space:nowrap;min-width:36px;text-align:right}
+.et-empty{font-size:11px;color:var(--muted);font-style:italic;padding:4px 0}
 .cc-ha{display:flex;flex-direction:column;gap:4px}
 .cc-ha div{background:#f2f6ef;border-radius:7px;padding:5px 8px;display:flex;justify-content:space-between}
 .cc-ha span{font-size:9.5px;color:var(--muted);text-transform:uppercase} .cc-ha b{font-size:11px}
@@ -103,6 +112,7 @@ td.dl{padding-left:22px;color:var(--teal)}
 .ptbar .pp{background:var(--green)} .ptbar .pt{background:var(--teal)}
 .chip{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;text-transform:uppercase;letter-spacing:.3px}
 .chip-ha{background:#e8f3dc;color:#3a5a10} .chip-hr{background:#dff0ec;color:#12564a}
+.chip-etapa{background:#f0e6d2;color:#6b4f13}
 .bars{display:flex;align-items:flex-end;gap:14px;height:180px;padding:8px 4px 0}
 .barcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;cursor:pointer}
 .barcol .bval{font-size:11px;font-weight:700;margin-bottom:5px}
@@ -151,7 +161,7 @@ td.dl{padding-left:22px;color:var(--teal)}
     <div class="brand">
       <div class="logo-box"><img src="data:image/png;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAFsAoQDACIAAREBAhEB/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMAAAERAhEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACisLxD4gbQ2hAtxL5gPVsYxWL/wn7/8AQPH/AH9/+tXHVx+HozcJys/RibSO3orih4//AL2n/lJ/9apB4+h/isZPwYVKzPCPaf5hzI7GiuQ/4T61/wCfOb8xSjx9Z97Of81/xqvr+G/nQXR11FcmPHtj/wA+lx/47/jTh47089be4H4D/Gq+vYb+dfeF0dVRVawvY9Qso7qIMEkGQG61ZrpjJSSa2YwooopgFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQBxHj/79n9Gri67Xx//AMuX/Aq4qvj82/3uXy/IzluFFFS29vLdzrDAheRjgKK80kirY03wzqWpAOsXlRH+OTiugttJ0zw1ard6oyzXR5WPrg+w/rWNqfi3UL5isDm2h7KnX8TXorCU6MVPEu1/srf/AIA7W3NVfAkYX97qQVvQIP8AGoZ/Ak4BNteRy46BhjNco00jsWaR2Y9STU1tqF3Zvut7iSM+zUe2wT0dJpd76/dsF0eo6Fay2Wj29tOAJIxhgDmquvHX4YZbjSJbPbHHu8qeMksR15BqzoF3LfaNb3E7bpHHzHGM1cuv+PSb/cb+VfVYbl9jDk2srXLtdHkehfETxj4i1E2On2mnNMqliHBUAD8a6n7b8RYEZ5NM0qbHO1JSCa4L4R/8jxc/9cn/AJ17tXS9DkwznUjzOT/D/I81tPiuLXUfsPiLSJtOlBwWBLAe5BA4+leiWt1Be20dzbSpLDINyuhyCK5b4g+FrfxD4enkWIfbrZDJC4HJxyV+hrhvg94jmi1GXQbiQmGRS8IJ+6w6gfUf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BRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/9k=" alt="Desarrollos del Sur S.A."></div>
       <div class="b-txt"><h1>Seguimiento de Campaña 2026/2027</h1>
-        <div class="t-sub">Órdenes de Trabajo · Campo La Teresa · Fuente: CSV remoto (Albor Campos) + Plan RTK</div></div>
+        <div class="t-sub">Órdenes de Trabajo · Campo La Teresa · Fuentes: campania.csv (ejecución) + proyeccion.csv (planificación)</div></div>
     </div>
     <div class="t-date" id="t-date">—</div>
   </div>
@@ -167,7 +177,7 @@ td.dl{padding-left:22px;color:var(--teal)}
 
   <!-- TAB 1 -->
   <div class="page active">
-    <div class="panel"><h3>Avance por Cultivo <span>contexto · ejecución vs plan RTK</span></h3><div class="cults" id="cults"></div></div>
+    <div class="panel"><h3>Avance por Cultivo <span>etapas consideradas: Preparación de Suelo, Siembra, Cuidados, Cosecha · vs plan RTK</span></h3><div class="cults" id="cults"></div></div>
     <div class="kpis" id="exec-kpis"></div>
     <div class="prob-head">
       <div class="prob-count"><b id="prob-n">0</b><span>Problemas</span></div>
@@ -186,11 +196,18 @@ td.dl{padding-left:22px;color:var(--teal)}
       <span class="fnote" id="gnote"></span></div>
     <div class="gkpis" id="gkpis"></div>
     <div class="panel hero-panel"><h3>Detalle por Labor <span id="gld-sub"></span></h3>
+      <div class="scontr">
+        <label for="glabor">Labor</label>
+        <select id="glabor" onchange="renderLaborDetalle()"><option value="ALL">Todas las labores</option></select>
+        <label for="gestadio">Etapa</label>
+        <select id="gestadio" onchange="renderLaborDetalle()"><option value="ALL">Todas las etapas</option></select>
+        <span class="sc-note">Filtra solo esta tabla · una misma labor puede repetirse en más de una etapa</span>
+      </div>
       <div class="scroll" style="max-height:640px"><table class="ldt"><thead><tr>
-        <th>Labor</th><th class="tr">OT Conf.</th><th class="tr">Ha Ejec.</th><th class="tr">Horas Ejec.</th>
-        <th class="tr grp-pt">Labor Propia</th><th class="tr grp-pt">Labor Tercero</th><th class="tr">Propia / Tercero</th>
+        <th>Labor</th><th>Etapa</th><th class="tr">OT Conf.</th><th class="tr">Ha Ejec.</th><th class="tr">Horas Ejec.</th>
+        <th class="tr grp-pt">Labor Tercero</th><th class="tr">Propia / Tercero</th>
         <th class="tr">Insumos</th><th class="tr">Costo Total</th></tr></thead><tbody id="gld"></tbody></table></div></div>
-    <div class="panel sub"><h3>Consumo de Gasoil por Área <span>OT sin labor asignada · combustible (litros) · responde al filtro de mes</span></h3>
+    <div class="panel sub"><h3>Consumo de Gasoil por Área <span>combustible (litros) · Labor Propia (personal interno) · responde al filtro de mes</span></h3>
       <div class="sop-top" id="gastop"></div>
       <table><thead><tr><th>Área</th><th class="tr">OT</th><th class="tr">Litros</th><th class="tr">Total Pagado</th><th class="tr">Participación</th><th class="tr">%</th></tr></thead><tbody id="gasbody"></tbody></table></div>
     <div class="panel sub"><h3>Gasto Total por Mes <span>distribución mensual</span></h3><div class="bars" id="gbars"></div></div>
@@ -222,19 +239,35 @@ td.dl{padding-left:22px;color:var(--teal)}
 
 <script>
 // ================== CONFIG ==================
-const CSV_URL = "https://raw.githubusercontent.com/Andresleetter/dashboard-campania-26-27/main/campania.csv";
-const PROY_URL = "https://raw.githubusercontent.com/Andresleetter/dashboard-campania-26-27/refs/heads/main/Proyecciones2627.csv";
-const RTK = {"ARROZ": {"36B": 20.2, "36D": 21.15, "38A": 37.46, "38B": 48.54, "39A": 26.3, "40A": 40.77, "40B": 42.9, "41": 40.56, "42": 50.5, "43": 67.0, "44": 42.44, "45": 33.98, "46": 25.24, "47": 22.8, "54": 24.0, "26A": 1.37, "26B": 3.85, "26C/D": 37.36, "26E": 7.76, "26F": 7.73, "27A": 20.15, "27B": 24.13, "27C": 25.15, "27D": 21.94, "27E": 9.89, "27F": 8.6, "27G": 8.35, "27J/K": 26.46, "29A": 6.54, "29B": 7.51, "29C": 26.26, "29D": 24.83, "29E": 10.79, "29F": 11.12, "30A": 5.66, "30B": 5.63, "30C": 21.3, "30D": 20.99, "30E": 11.43, "30F": 12.27, "32A": 3.13, "32B": 9.7, "32C": 21.69, "32D": 21.39, "32E": 14.58, "32F": 15.03, "34A": 1.83, "34B": 5.36, "34C": 32.08, "34D": 27.0, "34E": 14.58, "34F": 6.09, "31A": 52.94, "31B": 47.0, "33A": 49.42, "33B": 56.01, "35A": 50.3, "35B": 43.64, "37A": 45.83, "37B": 56.24, "39C": 32.7, "39E": 28.7, "135": 53.42, "137": 87.95, "138": 43.87, "139": 38.07, "140": 77.71, "142": 40.0, "144A": 13.87, "145A": 16.1, "146A": 18.5, "147A": 7.1, "147B": 9.35, "148": 13.9, "149/150": 25.86, "151": 29.27, "152": 27.23, "153": 19.63, "154": 29.27, "155": 52.3, "156": 15.0, "200": 26.27, "201": 11.0, "202A": 13.65, "202B": 23.27, "202C": 21.57, "203": 85.75, "204": 78.18, "205A": 71.72, "205D": 17.78, "205C": 18.43, "206": 51.15, "207": 26.79, "208": 22.0, "210A": 10.09, "210B": 9.94, "211": 32.8, "213": 26.52, "214": 18.4, "216": 19.95, "217": 23.6, "218": 18.2}, "SOJA": {"3A": 41.2, "3B": 37.4, "4": 19.79, "5A": 29.89, "5B": 29.14, "9A": 21.13, "9B": 14.88, "9C": 11.31, "9D": 20.93, "9E": 32.76, "11A": 30.3, "11B": 41.48, "11C": 39.14, "13": 24.96, "6A": 44.7, "6B": 36.9, "7A": 24.7, "15": 38.42, "16": 27.67, "17": 32.01, "18": 37.52, "19A": 25.94, "19B": 28.44, "19C": 42.51, "20": 36.59, "21A": 30.01, "21B": 38.72, "22": 39.76, "23C": 24.93, "23D": 19.97, "21C": 22.69, "21D": 29.44, "23A": 41.51, "23B": 51.94, "25B": 46.54, "25A": 14.15, "111": 16.87, "89": 17.35, "90": 15.46, "95A": 26.26, "95B": 35.0, "108": 21.5, "109": 29.5, "110A": 15.46, "110B": 6.0, "110C": 8.34, "113B": 12.76, "113C": 27.73, "112A": 23.58}, "SORGO": {"28D": 15.0, "28E": 25.0, "28G": 12.5, "28H": 27.4, "76A": 25.2, "77A": 21.05, "77B": 16.3, "78A": 7.69, "78B": 30.35, "87": 14.9, "92 / 93": 24.56, "98": 27.44, "48": 24.8, "49": 24.55, "50": 24.9, "51": 28.4, "52A": 13.7}, "MAIZ": {"69": 28.78, "70": 38.65, "71A": 14.3, "72A": 20.57, "73A": 23.81, "74A": 39.12, "75A": 28.72}};
-const RTK_TOT = {}; for(const c in RTK){ RTK_TOT[c]=Object.values(RTK[c]).reduce((a,b)=>a+b,0); }
-const HOY = new Date();
+const REPO = "Andresleetter/dashboard-campania-26-27";
+const BRANCH = "main";
+// Varios espejos del mismo archivo: se usa el primero que el entorno permita (algunos
+// sandboxes bloquean raw.githubusercontent.com por CSP, por eso se prueba jsDelivr/Statically).
+function mirrors(file){ return [
+  "https://cdn.jsdelivr.net/gh/"+REPO+"@"+BRANCH+"/"+file,
+  "https://raw.githubusercontent.com/"+REPO+"/"+BRANCH+"/"+file,
+  "https://cdn.statically.io/gh/"+REPO+"/"+BRANCH+"/"+file
+]; }
+const SRC_CAMPANIA = mirrors("campania.csv");
+const SRC_PROY = mirrors("Proyecciones2627.csv");
+// El plan RTK (hectáreas planificadas por lote/cultivo) se construye en runtime desde proyeccion.csv.
+const HOY = new Date(2026,6,15); // 15/07/2026
 const MES = {1:'Ene',2:'Feb',3:'Mar',4:'Abr',5:'May',6:'Jun',7:'Jul',8:'Ago',9:'Sep',10:'Oct',11:'Nov',12:'Dic'};
 const CULTIVOS = ['ARROZ','SOJA','SORGO','MAIZ','AVENA','COBERTURA'];
+// Etapas de campaña consideradas para los indicadores de "avance" (todo lo demás que traiga el
+// campo Estadio — Secadero, Operativo, Mantenimientos, Infraestructura, Generador combustible, etc.
+// — queda fuera por no ser una etapa del ciclo del cultivo). Orden fijo = secuencia agronómica.
+const ETAPA_ORDEN = ['preparacion de suelo','siembra','cuidados','cosecha'];
+const ETAPA_LABEL = {'preparacion de suelo':'Preparación de Suelo','siembra':'Siembra','cuidados':'Cuidados','cosecha':'Cosecha'};
+function normEstadio(s){ return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim(); }
 const OPERATIVAS = ['OPERATIVO','PARCELA ARROZ','PARCELA SOJA','PARCELA SORGO','CUIDADOS DE PATIOS VIVIENDA','CUIDADOS DE PATIOS SILO','A RECUPERAR RH','MANTENIMIENTO DE BOMBAS'];
 let D=null;
 
 // ================== HELPERS ==================
 const fmt = n => Math.round(n||0).toLocaleString('es-AR');
 const fmt1 = n => (n||0).toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1});
+const fmt2 = n => (n||0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtUSD = n => (n||0).toLocaleString('es-AR',{minimumFractionDigits:2,maximumFractionDigits:2});
 function num(v){ if(v==null) return 0; if(typeof v==='number') return v; let s=String(v).trim(); if(!s) return 0;
   s=s.replace(/\s/g,''); if(s.indexOf(',')>-1 && s.indexOf('.')>-1){ s=s.replace(/\./g,'').replace(',', '.'); }
   else if(s.indexOf(',')>-1){ s=s.replace(',', '.'); } const n=parseFloat(s); return isNaN(n)?0:n; }
@@ -249,38 +282,34 @@ function color(av){ return av>=95?'g':(av>=80?'y':(av>=50?'o':'r')); }
 const CATCOL={'Gastos':'#1E6B5C','Hectáreas':'#5AA02C','Avance':'#F57C00','Controles':'#8e6a1f'};
 
 // ================== BUILD DATA ==================
+function stripAccents(s){ return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+function normHdr(s){ return stripAccents(s).toLowerCase().replace(/\uFEFF/g,'').replace(/\s+/g,' ').trim(); }
 function buildData(raw, proyecciones){
-
-    const RTK = {};
-
-  proyecciones.forEach(r => {
-
-    const cultivo = String(r.actividad || '')
-      .trim()
-      .toUpperCase();
-
-    const lote = String(r.lote || '')
-      .trim()
-      .toUpperCase();
-
-    const ha = num(r.hectareas);
-
-    if(!cultivo || !lote || !ha) return;
-
-    if(!RTK[cultivo]) {
-      RTK[cultivo] = {};
-    }
-
-    RTK[cultivo][lote] = ha;
-
+  // ---- PLAN RTK desde proyeccion.csv ----
+  // Soporta dos formatos:
+  //  a) simple: columnas actividad;lote;hectareas
+  //  b) export Albor "Proyecciones" (55 cols, ; con latin1): la columna 'Actividad' aparece
+  //     dos veces (ID numérico y texto) — PapaParse resuelve la 2da como 'Actividad_1', que
+  //     es la que trae el nombre del cultivo. 'Lote' y 'Hectáreas' son directas.
+  // El emparejamiento es case/acento-insensible para tolerar variaciones de export.
+  const RTK={};
+  let n_proy_sin_ha=0, n_proy_filas=0;
+  (proyecciones||[]).forEach(rowRaw=>{
+    const row={}; for(const k in rowRaw){ row[normHdr(k)]=rowRaw[k]; }
+    // cultivo: preferir la variante de texto (Actividad_1 / Especie_1) sobre el ID numérico
+    let cultivo = row['actividad_1'] ?? row['especie_1'] ?? row['cultivo'] ?? row['actividad'] ?? row['especie'];
+    cultivo = String(cultivo||'').trim().toUpperCase();
+    const lote = normLote(row['lote'] ?? row['parcela']);
+    const haRaw = row['hectareas'] ?? row['has a aplicar'] ?? row['superficie'];
+    const ha = num(haRaw);
+    if(!cultivo || !lote) return;
+    n_proy_filas++;
+    if(!ha){ n_proy_sin_ha++; return; }
+    if(!RTK[cultivo]) RTK[cultivo]={};
+    RTK[cultivo][lote]=(RTK[cultivo][lote]||0)+ha;   // suma defensiva por si un lote se repite
   });
-
-  const RTK_TOT = {};
-
-  for(const c in RTK){
-    RTK_TOT[c] = Object.values(RTK[c])
-      .reduce((a,b) => a + b, 0);
-  }
+  if(n_proy_sin_ha) console.warn('proyeccion.csv: '+n_proy_sin_ha+' de '+n_proy_filas+' filas sin hectáreas válidas (ignoradas).');
+  const RTK_TOT={}; for(const c in RTK){ RTK_TOT[c]=Object.values(RTK[c]).reduce((a,b)=>a+b,0); }
   // normalizar nombres de columnas (quita BOM y espacios)
   raw = raw.map(row=>{ const o={}; for(const k in row){ o[String(k).replace(/\uFEFF/g,'').trim()]=row[k]; } return o; });
   const rows = raw.map(r=>({
@@ -297,6 +326,7 @@ function buildData(raw, proyecciones){
     hr:numN(keyOf(r,['hectareasReales','Has. Reales'])),
     tipo:String(keyOf(r,['tipoItem','Tipo de Item'])||'').trim(),
     contr:String(keyOf(r,['contratista','Contratista'])||'').trim(),
+    personal:String(keyOf(r,['personal','Personal'])||'').trim(),
     insumo:String(keyOf(r,['insumo','Insumo'])||'').trim(),
     unidad:String(keyOf(r,['unidadMedida','Unidad de medida'])||'').trim(),
   })).filter(r=>r.ot && r.ot!=='undefined' && r.ot!=='nan');
@@ -314,10 +344,12 @@ function buildData(raw, proyecciones){
     const has=g.map(x=>x.hr).filter(x=>x!=null);
     return { ot:id, act:r0.act, lote:r0.lote, estadio:r0.estadio, serv:r0.serv, estado:r0.estado,
       ft:r0.ft, fr:r0.fr, tieneServ: r0.serv!=='' && r0.serv.toLowerCase()!=='nan',
+      contr:r0.contr, personal:r0.personal,
       ha: has.length?Math.max.apply(null,has):null,
       horas: g.filter(x=>x.esHoras).reduce((s,x)=>s+x.ud,0),
       imp: g.reduce((s,x)=>s+x.imp,0),
       propia: g.filter(x=>x.tipo==='Labor Propia').reduce((s,x)=>s+x.imp,0),
+      propia_ud: g.filter(x=>x.tipo==='Labor Propia').reduce((s,x)=>s+x.ud,0),
       tercero: g.filter(x=>x.tipo==='Labor Tercero').reduce((s,x)=>s+x.imp,0),
       insumos: g.filter(x=>x.tipo==='Insumo').reduce((s,x)=>s+x.imp,0),
       lines: g };
@@ -342,9 +374,31 @@ function buildData(raw, proyecciones){
     const ha_plan=RTK_TOT[c]||0;
     const lotConf=new Set(sub.filter(o=>o.estado==='Confirmado').map(o=>normLote(o.lote)));
     let ha_ejec=0; if(RTK[c]) lotConf.forEach(k=>{ if(k in RTK[c]) ha_ejec+=RTK[c][k]; });
-    ha_ejec=Math.round(ha_ejec*10)/10;
+    ha_ejec=Math.round(ha_ejec*100)/100;
     let av; if(ha_plan>0) av=Math.round(ha_ejec/ha_plan*1000)/10; else { const t=conf+ejec+pend; av=t?Math.round(conf/t*1000)/10:0; }
-    return {nombre:c,ha_plan:Math.round(ha_plan*10)/10,ha_ejec,avance:av,tiene_rtk:ha_plan>0,conf,ejec,pend,costo,col:color(av)};
+
+    // ---- Avance por ETAPA (campo "Estadio" de la OT) ----
+    // Solo se consideran las 4 etapas de campaña: Preparación de Suelo, Siembra, Cuidados, Cosecha.
+    // Se excluyen otros valores de Estadio que puedan aparecer (Secadero, Mantenimientos de
+    // infraestructura, Operativo, Generador combustible, etc.) por no ser etapas del ciclo del
+    // cultivo. Orden fijo = secuencia agronómica (no cronológico de carga).
+    const confOT = sub.filter(o=>o.estado==='Confirmado' && ETAPA_ORDEN.includes(normEstadio(o.estadio)));
+    const etMap={};
+    confOT.forEach(o=>{
+      const key=normEstadio(o.estadio);
+      if(!etMap[key]) etMap[key]={nombre:ETAPA_LABEL[key],lotes:new Set()};
+      etMap[key].lotes.add(normLote(o.lote));
+    });
+    const etapas=ETAPA_ORDEN.filter(k=>etMap[k]).map(k=>{
+      const e=etMap[k];
+      let ha_e=0; if(RTK[c]) e.lotes.forEach(l=>{ if(l in RTK[c]) ha_e+=RTK[c][l]; });
+      ha_e=Math.round(ha_e*100)/100;
+      const av_e = ha_plan>0 ? Math.round(ha_e/ha_plan*1000)/10 : null;
+      return {nombre:e.nombre, ha_ejec:ha_e, avance:av_e, n_lotes:e.lotes.size};
+    });
+    const etapa_actual = etapas.length? etapas[etapas.length-1].nombre : null;
+
+    return {nombre:c,ha_plan:Math.round(ha_plan*100)/100,ha_ejec,avance:av,tiene_rtk:ha_plan>0,conf,ejec,pend,costo,col:color(av),etapas,etapa_actual};
   }).filter(Boolean).sort((a,b)=>(b.ha_plan-a.ha_plan)||(b.costo-a.costo));
 
   // ---- OPERATIVAS ----
@@ -377,8 +431,8 @@ function buildData(raw, proyecciones){
   });
   exceso.sort((a,b)=>b.diff-a.diff);
   sinrtk.sort((a,b)=> a.cult<b.cult?-1:a.cult>b.cult?1:(a.lote<b.lote?-1:1));
-  const exc_kpi={n:exceso.length, ha:Math.round(exceso.reduce((s,e)=>s+e.diff,0)*10)/10,
-    mayor:Math.round(Math.max(0,...exceso.map(e=>e.diff))*10)/10, n_sinrtk:sinrtk.length};
+  const exc_kpi={n:exceso.length, ha:Math.round(exceso.reduce((s,e)=>s+e.diff,0)*100)/100,
+    mayor:Math.round(Math.max(0,...exceso.map(e=>e.diff))*100)/100, n_sinrtk:sinrtk.length};
 
   // ---- ALERTAS ----
   const nc=OTS.filter(o=>o.estado==='Pendiente'||o.estado==='En Ejecución');
@@ -390,18 +444,23 @@ function buildData(raw, proyecciones){
   const servOT=new Set(CONF.filter(o=>o.tieneServ).map(o=>o.ot));
   const detOT=CONF.filter(o=>servOT.has(o.ot));
   const gasOT=CONF.filter(o=>!servOT.has(o.ot));
-  // detalle (mes,labor)
+  // detalle (mes,labor,etapa) — se incluye la etapa (Estadio) porque una misma labor puede
+  // ejecutarse en más de una etapa del ciclo del cultivo a lo largo de la campaña.
   const dmap={};
-  detOT.forEach(o=>{ const m=o.fr?o.fr.getMonth()+1:0; const key=m+'|'+o.serv+'|'+(o.lines.every(l=>l.esHoras));
-    if(!dmap[key]) dmap[key]={mesnum:m,labor:o.serv,esH:o.lines.every(l=>l.esHoras),n:0,ha:0,horas:0,propia:0,tercero:0,insumos:0};
-    const d=dmap[key]; d.n++; d.ha+=(o.ha||0); d.horas+=o.horas; d.propia+=o.propia; d.tercero+=o.tercero; d.insumos+=o.insumos; });
-  const gastos=Object.values(dmap).map(d=>({...d,ha:Math.round(d.ha*10)/10,horas:Math.round(d.horas*10)/10,
-    propia:Math.round(d.propia*100)/100,tercero:Math.round(d.tercero*100)/100,insumos:Math.round(d.insumos*100)/100}));
-  // gasoil por (mes,area)
+  detOT.forEach(o=>{ const m=o.fr?o.fr.getMonth()+1:0; const est=o.estadio&&o.estadio.trim()?o.estadio.trim():'(Sin etapa)';
+    const key=m+'|'+o.serv+'|'+est+'|'+(o.lines.every(l=>l.esHoras));
+    if(!dmap[key]) dmap[key]={mesnum:m,labor:o.serv,estadio:est,esH:o.lines.every(l=>l.esHoras),n:0,ha:0,horas:0,propia:0,propia_ud:0,tercero:0,insumos:0};
+    const d=dmap[key]; d.n++; d.ha+=(o.ha||0); d.horas+=o.horas; d.propia+=o.propia; d.propia_ud+=o.propia_ud; d.tercero+=o.tercero; d.insumos+=o.insumos; });
+  const gastos=Object.values(dmap).map(d=>({...d,ha:Math.round(d.ha*100)/100,horas:Math.round(d.horas*100)/100,
+    propia:Math.round(d.propia*100)/100,propia_ud:Math.round(d.propia_ud*100)/100,tercero:Math.round(d.tercero*100)/100,insumos:Math.round(d.insumos*100)/100}));
+  // gasoil por (mes,area,personal) — se usa "Personal" (operario que retiró el combustible) y no
+  // "Contratista" porque en las OT de gasoil el campo Contratista viene vacío; quien queda
+  // registrado es el Personal interno que hizo la carga.
   const gmap={};
-  gasOT.forEach(o=>{ const m=o.fr?o.fr.getMonth()+1:0; const area=o.estadio||'(sin área)'; const key=m+'|'+area;
+  gasOT.forEach(o=>{ const m=o.fr?o.fr.getMonth()+1:0; const area=o.estadio||'(sin área)'; const pers=o.personal&&o.personal.trim()?o.personal.trim():'(Sin dato)';
+    const key=m+'|'+area+'|'+pers;
     const litros=o.lines.reduce((s,l)=>s+l.ud,0);
-    if(!gmap[key]) gmap[key]={mesnum:m,area,n:0,litros:0,total:0};
+    if(!gmap[key]) gmap[key]={mesnum:m,area,personal:pers,n:0,litros:0,total:0};
     const gg=gmap[key]; gg.n++; gg.litros+=litros; gg.total+=o.imp; });
   const gasoil_sec=Object.values(gmap).map(g=>({...g,litros:Math.round(g.litros*10)/10,total:Math.round(g.total*100)/100}));
   const gasto_total=gastos.reduce((s,d)=>s+d.propia+d.tercero+d.insumos,0);
@@ -409,23 +468,25 @@ function buildData(raw, proyecciones){
   const gmes={}, glit={};
   gasOT.forEach(o=>{ const m=o.fr?o.fr.getMonth()+1:0; gmes[m]=(gmes[m]||0)+o.imp; glit[m]=(glit[m]||0)+o.lines.reduce((a,l)=>a+l.ud,0); });
   const meses=[...new Set([...gastos.map(d=>d.mesnum),...gasoil_sec.map(g=>g.mesnum)])].filter(m=>m>0).sort((a,b)=>a-b).map(m=>({k:m,lbl:MES[m]}));
+  const labores=[...new Set(gastos.map(d=>d.labor))].sort((a,b)=>a.localeCompare(b,'es'));
+  const estadios_labor=[...new Set(gastos.map(d=>d.estadio))].sort((a,b)=>a.localeCompare(b,'es'));
 
   // ---- PROBLEMAS (neutral, por categoría) ----
   const P=[]; const cd={}; cultivos.forEach(c=>cd[c.nombre]=c);
   ['MAIZ','SOJA','SORGO','ARROZ'].forEach(c=>{ const o=cd[c]; if(o&&o.tiene_rtk&&o.avance<80)
     P.push({cat:'Avance',titulo:c.charAt(0)+c.slice(1).toLowerCase()+': avance '+Math.round(o.avance)+'% del plan',
       met:fmt(o.ha_ejec)+' / '+fmt(o.ha_plan)+' ha',desc:'Ejecutadas '+fmt(o.ha_ejec)+' ha de '+fmt(o.ha_plan)+' planificadas en RTK. '+(o.pend+o.ejec)+' OT sin confirmar.'}); });
-  P.push({cat:'Hectáreas',titulo:exc_kpi.n+' lotes con superficie ejecutada mayor a la planificada',met:'+'+fmt1(exc_kpi.ha)+' ha en exceso',
-    desc:'La superficie cargada en OT supera el RTK (mayor caso +'+fmt1(exc_kpi.mayor)+' ha). Posible error de carga que distorsiona costos por hectárea.'});
+  P.push({cat:'Hectáreas',titulo:exc_kpi.n+' lotes con superficie ejecutada mayor a la planificada',met:'+'+fmt2(exc_kpi.ha)+' ha en exceso',
+    desc:'La superficie cargada en OT supera el RTK (mayor caso +'+fmt2(exc_kpi.mayor)+' ha). Posible error de carga que distorsiona costos por hectárea.'});
   P.push({cat:'Controles',titulo:sinrtk.length+' OT sin correspondencia en el plan RTK',met:sinrtk.length+' OT',
     desc:'Órdenes cargadas en lotes que no existen en la planificación RTK. Requieren revisión de nomenclatura o alta de superficie.'});
   const terc=CONF.reduce((s,o)=>s+o.tercero,0), prop=CONF.reduce((s,o)=>s+o.propia,0);
-  P.push({cat:'Gastos',titulo:'El 100% del costo de labor corresponde a terceros',met:'US$ '+fmt(terc),
-    desc:'No se registra costo de labor propia (US$ '+fmt(prop)+'). Impide comparar el uso de maquinaria propia vs contratada y controlar el gasto tercerizado.'});
-  P.push({cat:'Gastos',titulo:'Actividades no agrícolas concentran el '+Math.round(oper_part)+'% del gasto',met:'US$ '+fmt(oper_costo),
-    desc:'Operativos, parcelas de ensayo, infraestructura y cuidados suman US$ '+fmt(oper_costo)+' de gasto ejecutado que no corresponde a producción de cultivos.'});
+  P.push({cat:'Gastos',titulo:'El 100% del costo de labor corresponde a terceros',met:'US$ '+fmtUSD(terc),
+    desc:'No se registra costo de labor propia (US$ '+fmtUSD(prop)+'). Impide comparar el uso de maquinaria propia vs contratada y controlar el gasto tercerizado.'});
+  P.push({cat:'Gastos',titulo:'Actividades no agrícolas concentran el '+Math.round(oper_part)+'% del gasto',met:'US$ '+fmtUSD(oper_costo),
+    desc:'Operativos, parcelas de ensayo, infraestructura y cuidados suman US$ '+fmtUSD(oper_costo)+' de gasto ejecutado que no corresponde a producción de cultivos.'});
   const disco=gastos.filter(d=>/^[12]° Disco$/.test(d.labor)).reduce((s,d)=>s+d.propia+d.tercero+d.insumos,0);
-  if(disco>0) P.push({cat:'Gastos',titulo:'Alta concentración del gasto en preparación de suelo (disco)',met:'US$ '+fmt(disco)+' · '+Math.round(disco/costo_total*100)+'%',
+  if(disco>0) P.push({cat:'Gastos',titulo:'Alta concentración del gasto en preparación de suelo (disco)',met:'US$ '+fmtUSD(disco)+' · '+Math.round(disco/costo_total*100)+'%',
     desc:'1° y 2° Disco representan el '+Math.round(disco/costo_total*100)+'% del gasto ejecutado de campaña.'});
   const catord={'Avance':0,'Gastos':1,'Hectáreas':2,'Controles':3};
   P.sort((a,b)=>(catord[a.cat]-catord[b.cat])||(a.titulo<b.titulo?-1:1));
@@ -433,54 +494,63 @@ function buildData(raw, proyecciones){
   return {total_ot,ot_conf,ot_ejec,ot_pend,costo_total,cultivos,operativas,oper_costo,oper_part,
     exceso,sinrtk,exc_kpi,alertas:atr,n_ot_atrasadas,n_ejec_atraso,
     gastos,gasoil_sec,meses,gasto_total,gasoil_total,gasoil_litros_total,gmes,glit,
+    labores,estadios_labor,
     problemas:P,
     avance_glob:Math.round(ot_conf/total_ot*100)};
 }
 
 // ================== RENDER ==================
 function renderAll(){
-  document.getElementById('t-date').textContent =
-  'Datos al ' + new Date().toLocaleDateString('es-ES');
+  document.getElementById('t-date').textContent='Datos al 15/07/2026';
   document.getElementById('b-prob').textContent=D.problemas.length;
   document.getElementById('b-exc').textContent=D.exc_kpi.n;
   document.getElementById('b-al').textContent=D.n_ot_atrasadas;
   // TAB1 cultivos
   document.getElementById('cults').innerHTML=D.cultivos.map(c=>{
-    const plan=c.tiene_rtk?fmt1(c.ha_plan)+' ha':'s/ RTK', ejec=c.tiene_rtk?fmt1(c.ha_ejec)+' ha':'—';
-    return `<div class="cult-card"><div class="cc-name">${c.nombre}</div>
-      <div class="cc-av c-${c.col}">${Math.round(c.avance)}<span>%</span></div>
-      <div class="bar"><div class="bar-fill f-${c.col}" style="width:${Math.min(c.avance,100)}%"></div></div>
-      <div class="cc-ha"><div><span>Ha plan.</span><b>${plan}</b></div><div><span>Ha ejec.</span><b>${ejec}</b></div></div></div>`;}).join('');
+    const plan=c.tiene_rtk?fmt2(c.ha_plan)+' ha':'s/ RTK';
+    const etapasHtml = c.etapas.length ? c.etapas.map(e=>{
+      const col = e.avance==null ? 'o' : color(e.avance);
+      const val = e.avance!=null ? Math.round(e.avance)+'%' : e.n_lotes+' lotes';
+      const w = e.avance!=null ? Math.min(e.avance,100) : 0;
+      return `<div class="et-row"><div class="et-lbl">${e.nombre}</div>
+        <div class="bar et-bar"><div class="bar-fill f-${col}" style="width:${w}%"></div></div>
+        <div class="et-val c-${col}">${val}</div></div>`;
+    }).join('') : '<div class="et-empty">Sin etapa registrada en OT confirmadas</div>';
+    return `<div class="cult-card">
+      <div class="cc-name">${c.nombre}</div>
+      ${c.etapa_actual?`<div class="cc-stage">Etapa actual: <b>${c.etapa_actual}</b></div>`:'<div class="cc-stage cc-stage-muted">Sin actividad confirmada aún</div>'}
+      <div class="cc-etapas">${etapasHtml}</div>
+      <div class="cc-ha"><div><span>Ha plan.</span><b>${plan}</b></div><div><span>OT conf. / total</span><b>${c.conf}/${c.conf+c.ejec+c.pend}</b></div></div></div>`;}).join('');
   document.getElementById('exec-kpis').innerHTML=
     `<div class="kpi"><div class="k-lab">Avance de Campaña</div><div class="k-val c-g">${D.avance_glob}<small>%</small></div><div class="k-foot">${D.ot_conf} de ${D.total_ot} OT confirmadas</div></div>`+
-    `<div class="kpi"><div class="k-lab">Costo Ejecutado</div><div class="k-val" style="font-size:21px">US$ ${fmt(D.costo_total)}</div><div class="k-foot">Solo OT confirmadas</div></div>`+
-    `<div class="kpi"><div class="k-lab">Gasto No Agrícola</div><div class="k-val c-o" style="font-size:21px">US$ ${fmt(D.oper_costo)}</div><div class="k-foot">${Math.round(D.oper_part)}% del total</div></div>`+
+    `<div class="kpi"><div class="k-lab">Costo Ejecutado</div><div class="k-val" style="font-size:21px">US$ ${fmtUSD(D.costo_total)}</div><div class="k-foot">Solo OT confirmadas</div></div>`+
+    `<div class="kpi"><div class="k-lab">Gasto No Agrícola</div><div class="k-val c-o" style="font-size:21px">US$ ${fmtUSD(D.oper_costo)}</div><div class="k-foot">${Math.round(D.oper_part)}% del total</div></div>`+
     `<div class="kpi"><div class="k-lab">Problemas Detectados</div><div class="k-val" style="color:var(--teal)">${D.problemas.length}</div><div class="k-foot">Para revisión de gestión</div></div>`;
   document.getElementById('prob-n').textContent=D.problemas.length;
   document.getElementById('probs').innerHTML=D.problemas.map(p=>
     `<div class="prob"><div class="p-left"><div class="p-tags"><span class="p-cat" style="background:${CATCOL[p.cat]}">${p.cat}</span></div>
       <div class="p-title">${p.titulo}</div><div class="p-desc">${p.desc}</div></div><div class="p-met">${p.met}</div></div>`).join('');
-  document.getElementById('oper-sub').textContent=Math.round(D.oper_part)+'% del costo ejecutado · US$ '+fmt(D.oper_costo);
+  document.getElementById('oper-sub').textContent=Math.round(D.oper_part)+'% del costo ejecutado · US$ '+fmtUSD(D.oper_costo);
   document.getElementById('oper').innerHTML=D.operativas.map(o=>
-    `<tr><td>${o.nombre}</td><td class="tr">${o.ot}</td><td class="tr mono">US$ ${fmt(o.costo)}</td><td class="tr"><div class="minibar"><div class="mb-fill f-o" style="width:${Math.min(o.part*2.5,100)}%"></div></div></td><td class="tr">${fmt1(o.part)}%</td></tr>`).join('');
+    `<tr><td>${o.nombre}</td><td class="tr">${o.ot}</td><td class="tr mono">US$ ${fmtUSD(o.costo)}</td><td class="tr"><div class="minibar"><div class="mb-fill f-o" style="width:${Math.min(o.part*2.5,100)}%"></div></div></td><td class="tr">${fmt1(o.part)}%</td></tr>`).join('');
   // TAB3 control ha
   document.getElementById('ha-kpis').innerHTML=
     `<div class="kpi"><div class="k-lab">Lotes con Exceso</div><div class="k-val c-r">${D.exc_kpi.n}</div><div class="k-foot">Superficie ejecutada &gt; planificada</div></div>`+
-    `<div class="kpi"><div class="k-lab">Ha Excedidas Acum.</div><div class="k-val c-r" style="font-size:22px">+${fmt1(D.exc_kpi.ha)}</div></div>`+
-    `<div class="kpi"><div class="k-lab">Mayor Exceso</div><div class="k-val c-r" style="font-size:22px">+${fmt1(D.exc_kpi.mayor)} ha</div></div>`+
+    `<div class="kpi"><div class="k-lab">Ha Excedidas Acum.</div><div class="k-val c-r" style="font-size:22px">+${fmt2(D.exc_kpi.ha)}</div></div>`+
+    `<div class="kpi"><div class="k-lab">Mayor Exceso</div><div class="k-val c-r" style="font-size:22px">+${fmt2(D.exc_kpi.mayor)} ha</div></div>`+
     `<div class="kpi"><div class="k-lab">OT Fuera de RTK</div><div class="k-val c-r">${D.exc_kpi.n_sinrtk}</div><div class="k-foot">Lote inexistente en plan</div></div>`;
   document.getElementById('exc-sub').textContent=D.exceso.length+' lotes · ordenado por mayor diferencia';
   let excHtml='';
   D.exceso.forEach(e=>{
-    excHtml+=`<tr class="grp"><td>${e.cult}</td><td class="mono">${e.lote}</td><td class="tr">${fmt1(e.ha_rtk)}</td><td class="tr">${fmt1(e.ha_ot)}</td><td class="tr exd">+${fmt1(e.diff)}</td><td class="tr exd">+${Math.round(e.pdiff)}%</td></tr>`;
+    excHtml+=`<tr class="grp"><td>${e.cult}</td><td class="mono">${e.lote}</td><td class="tr">${fmt2(e.ha_rtk)}</td><td class="tr">${fmt2(e.ha_ot)}</td><td class="tr exd">+${fmt2(e.diff)}</td><td class="tr exd">+${Math.round(e.pdiff)}%</td></tr>`;
     excHtml+=`<tr class="dethead"><td colspan="6">OT que componen el lote · ${e.n_ot} OT (excl. labores por hora)</td></tr>`;
     e.dets.forEach(x=>{ const tag=x.over?'<span class="tag">superficie sobre RTK</span>':'';
-      excHtml+=`<tr class="${x.over?'det-over':'det'}"><td class="dl mono">OT ${x.ot}</td><td>${x.act}</td><td colspan="2">${x.serv} ${tag}</td><td>${x.estado}</td><td class="tr ${x.over?'exd':''}">${fmt1(x.ha)} ha</td></tr>`; });
+      excHtml+=`<tr class="${x.over?'det-over':'det'}"><td class="dl mono">OT ${x.ot}</td><td>${x.act}</td><td colspan="2">${x.serv} ${tag}</td><td>${x.estado}</td><td class="tr ${x.over?'exd':''}">${fmt2(x.ha)} ha</td></tr>`; });
   });
   document.getElementById('exc').innerHTML=excHtml;
   document.getElementById('sinrtk-sub').textContent=D.sinrtk.length+' OT · el lote no existe en el plan RTK';
   document.getElementById('sinrtk').innerHTML=D.sinrtk.map(r=>
-    `<tr><td class="mono">OT ${r.ot}</td><td>${r.cult}</td><td class="mono">${r.lote}</td><td>${r.act}</td><td>${r.serv}</td><td class="tr mono">${fmt1(r.ha)}</td><td>${r.estado}</td></tr>`).join('');
+    `<tr><td class="mono">OT ${r.ot}</td><td>${r.cult}</td><td class="mono">${r.lote}</td><td>${r.act}</td><td>${r.serv}</td><td class="tr mono">${fmt2(r.ha)}</td><td>${r.estado}</td></tr>`).join('');
   // TAB4 alertas
   document.getElementById('al-kpis').innerHTML=
     `<div class="ak r"><b>${D.n_ot_atrasadas}</b><span>OT ATRASADAS</span></div>`+
@@ -494,7 +564,12 @@ function renderAll(){
   // filtro meses
   const sel=document.getElementById('gmes'); sel.querySelectorAll('option:not([value=ALL])').forEach(o=>o.remove());
   D.meses.forEach(m=>{const o=document.createElement('option');o.value=m.k;o.textContent=m.lbl;sel.appendChild(o);});
-  document.getElementById('foot').innerHTML='Datos cargados automáticamente desde CSV remoto · solo OT confirmadas en importes · todo importe = Unidades/Dosis × Precio Unitario · litros = Unidades/Dosis · avance por Ha ejecutadas vs plan RTK · plan RTK embebido (no está en el CSV) · sin datos de rendimiento ni presupuesto · no se hallaron OT canceladas.<br>Desarrollos del Sur S.A. · Producción Agrícola-Ganadera · 15/07/2026';
+  // filtros de Detalle por Labor (Labor / Etapa) — opciones de toda la campaña, no dependen del mes
+  const selLab=document.getElementById('glabor'); selLab.querySelectorAll('option:not([value=ALL])').forEach(o=>o.remove());
+  D.labores.forEach(l=>{const o=document.createElement('option');o.value=l;o.textContent=l;selLab.appendChild(o);});
+  const selEst=document.getElementById('gestadio'); selEst.querySelectorAll('option:not([value=ALL])').forEach(o=>o.remove());
+  D.estadios_labor.forEach(e=>{const o=document.createElement('option');o.value=e;o.textContent=e;selEst.appendChild(o);});
+  document.getElementById('foot').innerHTML='Datos cargados automáticamente desde CSV remoto · solo OT confirmadas en importes · todo importe = Unidades/Dosis × Precio Unitario · litros = Unidades/Dosis · avance por Ha ejecutadas vs plan RTK · planificación desde proyeccion.csv (clave de unión: cultivo=actividad + lote normalizado) · sin datos de rendimiento ni presupuesto · no se hallaron OT canceladas.<br>Desarrollos del Sur S.A. · Producción Agrícola-Ganadera · 15/07/2026';
   renderG();
 }
 
@@ -511,17 +586,12 @@ function renderG(){
   const totTerc=labs.reduce((s,l)=>s+l.terc,0), totIns=labs.reduce((s,l)=>s+l.ins,0);
   const gasoil=sel==='ALL'?D.gasoil_total:(D.gmes[sel]||0), gasoilL=sel==='ALL'?D.gasoil_litros_total:(D.glit[sel]||0);
   const maxM=mt.reduce((a,b)=>b.tot>a.tot?b:a,mt[0]), minM=mt.reduce((a,b)=>b.tot<a.tot?b:a,mt[0]);
-  const K=[['Gasto Total (labores)','US$ '+fmt(gasto),selTxt],['OT Confirmadas',nOT,'con labor'],['Labores Ejecutadas',labs.length,'tipos de labor'],
-    ['Costo Labor Tercero','US$ '+fmt(totTerc),gasto?Math.round(totTerc/gasto*100)+'% del gasto':''],
-    ['Costo Insumos','US$ '+fmt(totIns),gasto?Math.round(totIns/gasto*100)+'% del gasto':''],
-    ['Gasto de Gasoil','US$ '+fmt(gasoil),fmt1(gasoilL)+' L']];
+  const K=[['Gasto Total (labores)','US$ '+fmtUSD(gasto),selTxt],['OT Confirmadas',nOT,'con labor'],['Labores Ejecutadas',labs.length,'tipos de labor'],
+    ['Costo Labor Tercero','US$ '+fmtUSD(totTerc),gasto?Math.round(totTerc/gasto*100)+'% del gasto':''],
+    ['Costo Insumos','US$ '+fmtUSD(totIns),gasto?Math.round(totIns/gasto*100)+'% del gasto':''],
+    ['Gasto de Gasoil','US$ '+fmtUSD(gasoil),fmt1(gasoilL)+' L']];
   document.getElementById('gkpis').innerHTML=K.map(k=>`<div class="gkpi"><div class="k-lab">${k[0]}</div><div class="k-val">${k[1]}</div><div class="k-foot">${k[2]}</div></div>`).join('');
   document.getElementById('gnote').textContent=sel==='ALL'?'Mostrando la campaña completa':'Detalle del período seleccionado';
-  document.getElementById('gld-sub').textContent=selTxt+' · '+labs.length+' labores · ordenado por costo total';
-  document.getElementById('gld').innerHTML=labs.map(l=>{ const ha=l.esH?'<span style="color:var(--muted)">—</span>':fmt1(l.ha), hr=l.esH?fmt1(l.horas):'<span style="color:var(--muted)">—</span>';
-    const chip=l.esH?'<span class="chip chip-hr">horas</span>':'<span class="chip chip-ha">ha</span>'; const lt=l.prop+l.terc,pp=lt?l.prop/lt*100:0,pt=lt?l.terc/lt*100:0;
-    const bar=`<div class="ptbar"><div class="pp" style="width:${pp}%"></div><div class="pt" style="width:${pt}%"></div></div>`;
-    return `<tr><td><span class="lname">${l.labor}</span> ${chip}</td><td class="tr mono">${l.n}</td><td class="tr mono">${ha}</td><td class="tr mono">${hr}</td><td class="tr mono col-prop">US$ ${fmt(l.prop)}</td><td class="tr mono col-terc">US$ ${fmt(l.terc)}</td><td class="tr">${lt?bar:'—'}</td><td class="tr mono col-ins">US$ ${fmt(l.ins)}</td><td class="tr mono col-tot">US$ ${fmt(l.tot)}</td></tr>`;}).join('');
   const mx=Math.max(...mt.map(m=>m.tot),1);
   document.getElementById('gbars').innerHTML=mt.map(m=>{ const cls=[m.k===maxM.k?'max':'',m.k===minM.k?'min':'',(sel!=='ALL'&&m.k===sel)?'sel':''].join(' ');
     const tg=m.k===maxM.k?'<span class="tag-mx">MAX</span>':(m.k===minM.k?'<span class="tag-mn">MIN</span>':'');
@@ -533,19 +603,55 @@ function renderG(){
   const dots=pts.map((p,i)=>`<circle cx="${xs(i).toFixed(0)}" cy="${ys(p.acc).toFixed(0)}" r="4" fill="var(--green)"/><text x="${xs(i).toFixed(0)}" y="${(ys(p.acc)-9).toFixed(0)}" text-anchor="middle" style="font-size:11px;font-weight:700;fill:var(--teal)">${fmt(p.acc/1000)}k</text><text x="${xs(i).toFixed(0)}" y="${H-6}" text-anchor="middle" style="font-size:11px;fill:var(--muted)">${p.lbl}</text>`).join('');
   document.getElementById('gacc').innerHTML=`<svg width="100%" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet"><polygon points="${area}" fill="rgba(90,160,44,.12)"/><polyline points="${poly}" fill="none" stroke="var(--green)" stroke-width="2.5"/>${dots}</svg>`;
   document.getElementById('grk-sub').textContent=selTxt+' · secundario';
-  document.getElementById('grank').innerHTML=labs.map(l=>`<tr><td>${l.labor}</td><td class="tr mono">${l.n}</td><td class="tr mono">US$ ${fmt(l.tot)}</td><td class="tr"><div class="minibar"><div class="mb-fill f-g" style="width:${gasto?Math.min(l.tot/gasto*100,100):0}%"></div></div></td><td class="tr mono">${gasto?(l.tot/gasto*100).toFixed(1):0}%</td></tr>`).join('');
+  document.getElementById('grank').innerHTML=labs.map(l=>`<tr><td>${l.labor}</td><td class="tr mono">${l.n}</td><td class="tr mono">US$ ${fmtUSD(l.tot)}</td><td class="tr"><div class="minibar"><div class="mb-fill f-g" style="width:${gasto?Math.min(l.tot/gasto*100,100):0}%"></div></div></td><td class="tr mono">${gasto?(l.tot/gasto*100).toFixed(1):0}%</td></tr>`).join('');
   document.getElementById('gsummary').innerHTML=mt.map(m=>{const hl=(sel!=='ALL'&&m.k===sel)?' style="background:#fff8ee"':'';
-    return `<tr${hl}><td><b>${m.lbl}</b></td><td class="tr mono">${m.ot}</td><td class="tr mono">${fmt1(m.horas)}</td><td class="tr mono"><b>US$ ${fmt(m.tot)}</b></td><td class="tr mono">${D.gasto_total?(m.tot/D.gasto_total*100).toFixed(1):0}%</td></tr>`;}).join('');
-  renderGasoil(sel);
+    return `<tr${hl}><td><b>${m.lbl}</b></td><td class="tr mono">${m.ot}</td><td class="tr mono">${fmt2(m.horas)}</td><td class="tr mono"><b>US$ ${fmtUSD(m.tot)}</b></td><td class="tr mono">${D.gasto_total?(m.tot/D.gasto_total*100).toFixed(1):0}%</td></tr>`;}).join('');
+  renderLaborDetalle();
+  renderGasoil();
 }
-function renderGasoil(sel){
+
+// ---- Detalle por Labor: filtros de Labor y Etapa, afectan SOLO esta tabla ----
+// (los KPIs, ranking y resumen por mes de arriba siguen agregando por labor sin importar la
+// etapa, tal como antes; acá se desglosa además por Estadio para poder aislar en qué etapa
+// del ciclo se ejecutó una labor puntual, dado que una misma labor puede repetirse en más
+// de una etapa a lo largo de la campaña).
+function renderLaborDetalle(){
+  const selV=document.getElementById('gmes').value, sel=selV==='ALL'?'ALL':parseInt(selV);
+  const selTxt=selV==='ALL'?'Toda la campaña':document.getElementById('gmes').selectedOptions[0].text;
+  const laborV=document.getElementById('glabor').value, estV=document.getElementById('gestadio').value;
+  let recs=sel==='ALL'?D.gastos:D.gastos.filter(r=>r.mesnum===sel);
+  if(laborV!=='ALL') recs=recs.filter(r=>r.labor===laborV);
+  if(estV!=='ALL') recs=recs.filter(r=>r.estadio===estV);
+  const by={};
+  recs.forEach(r=>{ const key=r.labor+'|'+r.estadio;
+    if(!by[key]) by[key]={labor:r.labor,estadio:r.estadio,esH:r.esH,n:0,ha:0,horas:0,prop:0,propUd:0,terc:0,ins:0};
+    const o=by[key]; o.n+=r.n; o.ha+=r.ha; o.horas+=r.horas; o.prop+=r.propia; o.propUd+=r.propia_ud; o.terc+=r.tercero; o.ins+=r.insumos; });
+  const labs=Object.values(by).map(o=>({...o,tot:o.prop+o.terc+o.ins})).sort((a,b)=>b.tot-a.tot);
+  const filtro=[laborV!=='ALL'?'Labor: '+laborV:null, estV!=='ALL'?'Etapa: '+estV:null].filter(Boolean).join(' · ');
+  document.getElementById('gld-sub').textContent=selTxt+(filtro?' · '+filtro:'')+' · '+labs.length+' combinación(es) labor/etapa · ordenado por costo total';
+  document.getElementById('gld').innerHTML= labs.length ? labs.map(l=>{
+    const ha=l.esH?'<span style="color:var(--muted)">—</span>':fmt2(l.ha), hr=l.esH?fmt2(l.horas):'<span style="color:var(--muted)">—</span>';
+    const chip=l.esH?'<span class="chip chip-hr">horas</span>':'<span class="chip chip-ha">ha</span>';
+    const lt=l.prop+l.terc,pp=lt?l.prop/lt*100:0,pt=lt?l.terc/lt*100:0;
+    const bar=`<div class="ptbar"><div class="pp" style="width:${pp}%"></div><div class="pt" style="width:${pt}%"></div></div>`;
+    // Labor Propia no tiene costo asignado en el sistema (siempre US$ 0) — se muestra la
+    // cantidad ejecutada (Unidades/Dosis) en su lugar, que sí varía y aporta información.
+    return `<tr><td><span class="lname">${l.labor}</span> ${chip}</td><td><span class="chip chip-etapa">${l.estadio}</span></td><td class="tr mono">${l.n}</td><td class="tr mono">${ha}</td><td class="tr mono">${hr}</td><td class="tr mono col-terc">US$ ${fmtUSD(l.terc)}</td><td class="tr">${lt?bar:'—'}</td><td class="tr mono col-ins">US$ ${fmtUSD(l.ins)}</td><td class="tr mono col-tot">US$ ${fmtUSD(l.tot)}</td></tr>`;
+  }).join('') : '<tr><td colspan="9" style="text-align:center;color:var(--muted);padding:16px">Sin registros para el filtro seleccionado</td></tr>';
+}
+
+// ---- Consumo de Gasoil por Área ----
+function renderGasoil(){
+  const selV=document.getElementById('gmes').value, sel=selV==='ALL'?'ALL':parseInt(selV);
   const recs=sel==='ALL'?D.gasoil_sec:D.gasoil_sec.filter(r=>r.mesnum===sel);
-  const by={}; recs.forEach(r=>{ if(!by[r.area])by[r.area]={area:r.area,n:0,litros:0,total:0}; const o=by[r.area];o.n+=r.n;o.litros+=r.litros;o.total+=r.total; });
+  const by={}; recs.forEach(r=>{ const key=r.area;
+    if(!by[key]) by[key]={area:r.area,n:0,litros:0,total:0};
+    const o=by[key]; o.n+=r.n; o.litros+=r.litros; o.total+=r.total; });
   const rows=Object.values(by).sort((a,b)=>b.total-a.total);
-  const tot=rows.reduce((s,r)=>s+r.total,0), litros=rows.reduce((s,r)=>s+r.litros,0), ot=rows.reduce((s,r)=>s+r.n,0);
-  document.getElementById('gastop').innerHTML=`<div class="sop-kpi"><div class="l">Total Gasoil</div><div class="v">US$ ${fmt(tot)}</div></div><div class="sop-kpi"><div class="l">Litros Consumidos</div><div class="v">${fmt1(litros)} L</div></div><div class="sop-kpi"><div class="l">OT (sin labor)</div><div class="v">${ot}</div></div>`;
+  const tot=rows.reduce((s,r)=>s+r.total,0), litros=rows.reduce((s,r)=>s+r.litros,0);
+  document.getElementById('gastop').innerHTML=`<div class="sop-kpi"><div class="l">Total Gasoil</div><div class="v">US$ ${fmtUSD(tot)}</div></div><div class="sop-kpi"><div class="l">Litros Consumidos</div><div class="v">${fmt1(litros)} L</div></div>`;
   const mx=Math.max(1,...rows.map(r=>r.total));
-  document.getElementById('gasbody').innerHTML=rows.length?rows.map(r=>`<tr><td><b>${r.area}</b></td><td class="tr mono">${r.n}</td><td class="tr mono">${fmt1(r.litros)}</td><td class="tr mono col-tot">US$ ${fmt(r.total)}</td><td class="tr"><div class="sopbar"><div style="width:${r.total/mx*100}%"></div></div></td><td class="tr mono">${tot?(r.total/tot*100).toFixed(1):0}%</td></tr>`).join(''):'<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:16px">Sin consumo de gasoil en el período</td></tr>';
+  document.getElementById('gasbody').innerHTML=rows.length?rows.map(r=>`<tr><td><b>${r.area}</b></td><td class="tr mono">${r.n}</td><td class="tr mono">${fmt1(r.litros)}</td><td class="tr mono col-tot">US$ ${fmtUSD(r.total)}</td><td class="tr"><div class="sopbar"><div style="width:${r.total/mx*100}%"></div></div></td><td class="tr mono">${tot?(r.total/tot*100).toFixed(1):0}%</td></tr>`).join(''):'<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:16px">Sin consumo de gasoil en el período</td></tr>';
 }
 function show(i,btn){ document.querySelectorAll('.page').forEach((p,j)=>p.classList.toggle('active',j===i));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); btn.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
@@ -555,43 +661,92 @@ function showError(msg){ const ov=document.getElementById('overlay'); ov.classLi
   document.getElementById('ov-title').textContent='No se pudieron cargar los datos';
   document.getElementById('ov-msg').textContent=String(msg||'Error de red al descargar el CSV remoto.')+' Verifique la conexión o que la URL esté disponible.';
   document.getElementById('ov-retry').style.display='inline-block'; }
-function loadData(){
-  Promise.all([
-    fetch(CSV_URL).then(r => r.text()),
-    fetch(PROY_URL).then(r => r.text())
-  ]).then(([campaniaCSV, proyCSV]) => {
-
-    Papa.parse(campaniaCSV,{
-      header:true,
-      skipEmptyLines:true,
-      complete:function(campania){
-
-        Papa.parse(proyCSV,{
-          header:true,
-          delimiter:";",
-          skipEmptyLines:true,
-          complete:function(proyecciones){
-
-            console.log("Campaña:", campania.data.length);
-            console.log("Proyecciones:", proyecciones.data.length);
-
-            D = buildData(
-              campania.data,
-              proyecciones.data
-            );
-
-            renderAll();
-
-            document.getElementById('overlay').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
-
-          }
-        });
-
-      }
-    });
-
+function parseCSVText(text, nombre){
+  if(!text || !text.trim()) throw new Error('Archivo vacío: '+nombre+' no contiene datos.');
+  var parsed = Papa.parse(text, {header:true, skipEmptyLines:true});
+  if(parsed.errors && parsed.errors.length) console.warn('Advertencias de parsing en '+nombre+':', parsed.errors.slice(0,5));
+  var rows = (parsed.data||[]).filter(function(r){ return r && Object.keys(r).length>0; });
+  if(!rows.length) throw new Error('Error de parsing CSV: '+nombre+' no produjo registros válidos.');
+  return rows;
+}
+function papaDownload(url, nombre){   // último recurso: XHR de PapaParse (download:true)
+  return new Promise(function(resolve, reject){
+    Papa.parse(url, {download:true, header:true, skipEmptyLines:true,
+      complete:function(r){ try{ resolve(parseCSVTextFromParsed(r, nombre)); }catch(e){ reject(e); } },
+      error:function(err){ reject(new Error('descarga XHR falló'+(err && err.message ? ': '+err.message : ' (bloqueo de red/CORS)'))); } });
   });
+}
+function parseCSVTextFromParsed(parsed, nombre){
+  var rows=(parsed.data||[]).filter(function(r){ return r && Object.keys(r).length>0; });
+  if(!rows.length) throw new Error('Error de parsing CSV: '+nombre+' sin registros válidos.');
+  return rows;
+}
+function cargarCSV(nombre, urls){
+  console.log('Inicio de carga de '+nombre);
+  var i=0, lastErr=null;
+  var rawUrl = urls.filter(function(u){return u.indexOf('raw.githubusercontent.com')>-1;})[0] || urls[0];
+  function siguiente(){
+    if(i>=urls.length){
+      console.warn('  '+nombre+': fetch falló en todos los espejos, probando XHR (download:true)…');
+      return papaDownload(rawUrl, nombre).then(function(rows){
+        console.log('Fin de carga de '+nombre+' — registros cargados: '+rows.length+' (vía XHR)');
+        return rows;
+      }).catch(function(e){
+        throw new Error('Error al descargar '+nombre+': no se pudo obtener desde ningún origen (GitHub raw, jsDelivr ni Statically). '
+          + 'Último detalle: '+((lastErr&&lastErr.message)||e.message)+'. '
+          + 'El entorno puede estar bloqueando las conexiones externas (CORS/CSP).');
+      });
+    }
+    var url=urls[i++];
+    console.log('  intentando '+nombre+' →', url);
+    return fetch(url, {cache:'no-store'})
+      .then(function(resp){
+        if(!resp.ok){
+          if(resp.status===404) throw new Error('HTTP 404 (archivo no encontrado)');
+          throw new Error('HTTP '+resp.status+' '+(resp.statusText||''));
+        }
+        return resp.arrayBuffer();
+      })
+      .then(function(buf){
+        // Decodificación robusta: algunos exports (p.ej. Proyecciones de Albor) vienen en
+        // Windows-1252/Latin1, no UTF-8 (tildes como 'á' rompen un decode UTF-8 estricto).
+        try{ return new TextDecoder('utf-8', {fatal:true}).decode(buf); }
+        catch(e){ return new TextDecoder('windows-1252').decode(buf); }
+      })
+      .then(function(text){
+        var rows=parseCSVText(text, nombre);
+        console.log('Fin de carga de '+nombre+' — registros cargados: '+rows.length+' (origen: '+url+')');
+        return rows;
+      })
+      .catch(function(e){ lastErr=e; console.warn('  falló '+url+' — '+(e.message||e)); return siguiente(); });
+  }
+  return siguiente();
+}
+function loadData(){
+  var ov=document.getElementById('overlay'); ov.classList.remove('err'); ov.style.display='flex';
+  document.getElementById('ov-retry').style.display='none';
+  document.getElementById('ov-title').textContent='Cargando datos de campaña…';
+  document.getElementById('ov-msg').textContent='Descargando campania.csv y proyeccion.csv desde el repositorio remoto…';
+  document.getElementById('app').style.display='none';
+
+  Promise.all([ cargarCSV('campania.csv', SRC_CAMPANIA), cargarCSV('proyeccion.csv', SRC_PROY) ])
+    .then(function(res){
+      var campania=res[0], proyeccion=res[1];
+      console.log('campania.csv — registros:', campania.length);
+      console.log('proyeccion.csv — registros:', proyeccion.length);
+      try{ D = buildData(campania, proyeccion); }
+      catch(e){ console.error('Error al construir indicadores:', e); throw new Error('Error procesando los datos: '+e.message); }
+      var conPlan=D.cultivos.filter(function(c){return c.tiene_rtk;}).length;
+      console.log('Cultivos con plan (RTK) cruzados desde proyeccion.csv:', conPlan);
+      if(conPlan===0) console.warn('Advertencia: proyeccion.csv no aportó hectáreas planificadas.');
+      renderAll();
+      ov.style.display='none'; document.getElementById('app').style.display='block';
+      console.log('Dashboard renderizado correctamente.');
+    })
+    .catch(function(err){
+      console.error('Error de carga (detalle técnico):', err);
+      showError(err && err.message ? err.message : String(err));
+    });
 }
 
 document.addEventListener('DOMContentLoaded',loadData);
